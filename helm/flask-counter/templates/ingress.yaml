@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: {{ template "flaskcounter.fullname" . }}
+spec:
+  rules:
+  - host: customer2-app-{{ .Values.externalip }}.nip.io
+    http:
+      paths:
+      - backend:
+          serviceName: {{ template "flaskcounter.fullname" . }}
+          servicePort: {{ .Values.portflask }}

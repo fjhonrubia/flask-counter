@@ -1,0 +1,21 @@
+livenessProbe:
+  httpGet:
+    path: /health/live
+    port: 5000
+readinessProbe:
+  httpGet:
+    path: /health/ready
+    port: 5000
+resources:    
+  requests:
+    memory: 128Mi
+    cpu: 100m
+  limits:
+    memory: 256Mi
+    cpu: 200m
+    
+replicas: 1
+portflask: 5000
+portmysql: 3306
+externalip: 192.168.99.101
+image: flask-counter2
